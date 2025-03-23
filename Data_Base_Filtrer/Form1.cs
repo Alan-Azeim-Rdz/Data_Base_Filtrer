@@ -26,9 +26,11 @@ namespace Data_Base_Filtrer
                 DataTable filteredTable = dv.ToTable();
 
                 // Procesar datos de fuel-type y generar la gráfica
-                ProcessData(filteredTable, "fuel-type", FromPlotFul);
-                ProcessData(filteredTable, "aspiration", formsPlot2);
-                ProcessData(filteredTable, "normalized-losses", formsPlot3);
+                ProcessData(filteredTable, "fuel-type", FromPlotFuel);
+                ProcessData(filteredTable, "aspiration", FromPlotAspiration);
+                ProcessData(filteredTable, "normalized-losses", FromPlotLosses);
+                ProcessData(filteredTable, "num-of-doors", FromPlotDoors);
+                ProcessData(filteredTable, "engine-location", FromPlotEngine);
             }
 
 
@@ -85,13 +87,14 @@ namespace Data_Base_Filtrer
             plot.Plot.Title($"Distribución de {title}");
             plot.Plot.Axes.Frameless();
             plot.Plot.HideGrid();
+            plot.Plot.Axes.AutoScale();
             plot.Refresh();
         }
 
         private void Fill_Table()
         {
             // Leer un archivo CSV y mostrarlo en un DataGridView
-            string path = @"C:\Users\1gren\Downloads\archive\Automobile_data.CSV";
+            string path = @"C:\Users\Lux\Downloads\Automobile_data.CSV";
             string[] lines = File.ReadAllLines(path);
             string[] headers = lines[0].Split(',');
             DataTable dt = new DataTable();
